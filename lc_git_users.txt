@@ -1,3 +1,4 @@
 Lee,Evans,lee.evans@ucalgary.ca,Lee-F-Evans,2021_ENCM369
 ENCM369,Jason Long,jrlong@ucalgary.ca,UofCencm369,2021_ENCM369
 Aly,Elsayed,aly.elsayed1@ucalgary.ca,aly-elsayed,ALYLC10ENCM369
+connor,farrell,connor.farrell@ucalgary.ca,ConnorFLC10,2021_ENCM369
