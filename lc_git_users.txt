@@ -4,3 +4,4 @@ Aly,Elsayed,aly.elsayed1@ucalgary.ca,aly-elsayed,ALYLC10ENCM369
 connor,farrell,connor.farrell@ucalgary.ca,ConnorFLC10,2021_ENCM369
 Saad,Latif,saadlatif30@gmail.com,saad-latif,2021_ENCM369
 Sarim,Kamran,sarim.kamran@ucalgary.ca,SarimKB,2021_ENCM369
+Bilal,Dawood,bilal.dawood@ucalgary.ca,BilalDawood01,2021_ENCM369
