@@ -5,3 +5,4 @@ connor,farrell,connor.farrell@ucalgary.ca,ConnorFLC10,2021_ENCM369
 Saad,Latif,saadlatif30@gmail.com,saad-latif,2021_ENCM369
 Sarim,Kamran,sarim.kamran@ucalgary.ca,SarimKB,2021_ENCM369
 Bilal,Dawood,bilal.dawood@ucalgary.ca,BilalDawood01,2021_ENCM369
+Nicholas,Moreno,nicholas.morenomansf@ucalgary.ca,NicholasMoreno-tech,2021_ENCM369
