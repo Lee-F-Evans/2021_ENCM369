@@ -105,7 +105,7 @@ void UserAppRun(void)
     u32 u32Counter;             // counter variable for the timer loop
     while(LATA<0xBF)            // loop that starts at 0x80,1000 0000, and adds 1 every run through stopping at 0xBF,1011 1111.
     {
-        LATA++;                 // increment clock once, simulating binary counting from 0 to 127
+        LATA++;                 // increment LATA once, simulating binary counting from 128 to 159, or 1000 0000 to 1011 1111.
         u32Counter = 500000;    // Experimentally 500000 was determined to be the value that creates 250ms delay 
         while(u32Counter > 0)   // counter loop for delay ~250ms/2Hz blinking
         {
