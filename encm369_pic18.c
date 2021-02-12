@@ -88,9 +88,12 @@ Promises:
 */
 void GpioSetup(void)
 {  
-LATA   = 0x00;       // Clear Data Latch     
+LATA   = 0x00;       // Clear Data Latch
+PORTB  = 0x00;       // Clear register data
 ANSELA = 0x00;       // Enable digital drivers    
+ANSELB = 0x00;       // Enable digital drivers
 TRISA  = 0x00;       // Set RA as all outputs 
+TRISB  = 0x30;       // Set RB 5 and 4 to input, the rest output 
 LATA   = 0x80;       //Set my 'test' pin high and all else low
 } /* end GpioSetup() */
 

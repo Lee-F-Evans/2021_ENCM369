@@ -101,17 +101,20 @@ Promises:
 */
 void UserAppRun(void)
 {
-    LATA = 0x80;                // This writes all pins low that should be low while keeping pin 7 constant high
-    u32 u32Counter;             // counter variable for the timer loop
-    while(LATA<0xBF)            // loop that starts at 0x80,1000 0000, and adds 1 every run through stopping at 0xBF,1011 1111.
-    {
+    static u8 u8PreviousState = 0;
+    
+    if(LATA == 0xBF){           // this is a check to see if the current value displayed by the LEDs is max, if true, it will reset to 0
+        LATA = 0x80;
+    }
+    
+    if((RB5 == 1) && (u8PreviousState == 0)){
         LATA++;                 // increment LATA once, simulating binary counting from 128 to 159, or 1000 0000 to 1011 1111.
-        u32Counter = 500000;    // Experimentally 500000 was determined to be the value that creates 250ms delay 
-        while(u32Counter > 0)   // counter loop for delay ~250ms/2Hz blinking
-        {
-            u32Counter--;
-        }
-    }  
+        __delay_ms(200);         // debounce delay (I know, not great)
+        u8PreviousState = 1;
+    }
+    if(RB5 == 0){
+        u8PreviousState = 0;
+    }
 } /* end UserAppRun */
 
 
