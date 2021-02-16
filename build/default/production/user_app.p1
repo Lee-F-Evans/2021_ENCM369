@@ -6,9 +6,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "12 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18F-Q_DFP/1.8.154/xc8\pic\include\builtins.h
 [v __delay `JF183 ~T0 @X0 0 e ]
 [p i __delay ]
-"54044 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18F-Q_DFP/1.8.154/xc8\pic\include\proc\pic18f27q43.h
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18F-Q_DFP/1.8.154/xc8\pic\include\proc\pic18f27q43.h: 54044: extern volatile __bit RB5 __attribute__((address(0x267D)));
-[v _RB5 `Vb ~T0 @X0 0 e@9853 ]
+"46157 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18F-Q_DFP/1.8.154/xc8\pic\include\proc\pic18f27q43.h
+[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18F-Q_DFP/1.8.154/xc8\pic\include\proc\pic18f27q43.h: 46157: extern volatile unsigned char PORTB __attribute__((address(0x4CF)));
+[v _PORTB `Vuc ~T0 @X0 0 e@1231 ]
 "30 ./configuration.h
 [p x FEXTOSC  =  OFF     ]
 "31
@@ -2595,15 +2595,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 2277 ]
 "110
-[; ;user_app.c: 110:     if((RB5 == 1) && (u8PreviousState == 0)){
-[e $ ! && == -> _RB5 `i -> 1 `i == -> F15921 `i -> 0 `i 2278  ]
+[; ;user_app.c: 110:     if(((PORTB&0x20) == 0x20) && (u8PreviousState == 0)){
+[e $ ! && == & -> _PORTB `i -> 32 `i -> 32 `i == -> F15921 `i -> 0 `i 2278  ]
 {
 "111
 [; ;user_app.c: 111:         LATA++;
 [e ++ _LATA -> -> 1 `i `Vuc ]
 "112
-[; ;user_app.c: 112:         _delay((unsigned long)((200)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;user_app.c: 112:         _delay((unsigned long)((50)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "113
 [; ;user_app.c: 113:         u8PreviousState = 1;
 [e = F15921 -> -> 1 `i `uc ]
@@ -2612,8 +2612,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 2278 ]
 "115
-[; ;user_app.c: 115:     if(RB5 == 0){
-[e $ ! == -> _RB5 `i -> 0 `i 2279  ]
+[; ;user_app.c: 115:     if((PORTB&0x20) == 0x00){
+[e $ ! == & -> _PORTB `i -> 32 `i -> 0 `i 2279  ]
 {
 "116
 [; ;user_app.c: 116:         u8PreviousState = 0;

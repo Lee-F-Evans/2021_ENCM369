@@ -27327,12 +27327,12 @@ void UserAppRun(void)
         LATA = 0x80;
     }
 
-    if((RB5 == 1) && (u8PreviousState == 0)){
+    if(((PORTB&0x20) == 0x20) && (u8PreviousState == 0)){
         LATA++;
-        _delay((unsigned long)((200)*(64000000/4000.0)));
+        _delay((unsigned long)((50)*(64000000/4000.0)));
         u8PreviousState = 1;
     }
-    if(RB5 == 0){
+    if((PORTB&0x20) == 0x00){
         u8PreviousState = 0;
     }
 }
