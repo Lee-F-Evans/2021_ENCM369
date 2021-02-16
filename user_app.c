@@ -101,19 +101,19 @@ Promises:
 */
 void UserAppRun(void)
 {
-    static u8 u8PreviousState = 0;
+    static u8 u8PreviousState = 0;      // Global variable to keep track of the previous state to allow for logically only one button press to one increment
     
-    if(LATA == 0xBF){           // this is a check to see if the current value displayed by the LEDs is max, if true, it will reset to 0
+    if(LATA == 0xBF){                   // this is a check to see if the current value displayed by the LEDs is max, if true, it will reset to the ground state with only LED7 on
         LATA = 0x80;
     }
     
-    if((RB5 == 1) && (u8PreviousState == 0)){
-        LATA++;                 // increment LATA once, simulating binary counting from 128 to 159, or 1000 0000 to 1011 1111.
-        __delay_ms(200);         // debounce delay (I know, not great)
-        u8PreviousState = 1;
+    if((RB5 == 1) && (u8PreviousState == 0)){   // if the button has been pressed and the previous button state was 0 do the things
+        LATA++;                         // increment LATA once, simulating binary counting from 128 to 159, or 1000 0000 to 1011 1111.
+        __delay_ms(50);                 // debounce delay
+        u8PreviousState = 1;            // set previous state high so we do not increment next time through if the button was not released
     }
-    if(RB5 == 0){
-        u8PreviousState = 0;
+    if(RB5 == 0){                       // Once button is released, reset the counter so the device allows an increment on the next press
+        u8PreviousState = 0;        
     }
 } /* end UserAppRun */
 
