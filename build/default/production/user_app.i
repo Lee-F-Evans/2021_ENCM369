@@ -27325,7 +27325,7 @@ void UserAppRun(void)
     u16 u16LataState = 0x80&LATA;
 
     u16TimerCounter++;
-
+# 116 "user_app.c"
     if(u16TimerCounter == 100)
     {
         if(u8Direction == 0)
@@ -27358,7 +27358,6 @@ void UserAppRun(void)
             u16TimerCounter =0;
         }
     }
-
 }
 
 
@@ -27370,10 +27369,10 @@ void UserAppRun(void)
 void TimeXus(u16 u16Microseconds){
     T0CON0 &= 0x7F;
 
-    u16 u16OverFlowCheck = 0xFFFF - u16Microseconds;
+    u16 u16OverFlow = 0xFFFF - u16Microseconds;
 
-    u8 u8LowInput = u16OverFlowCheck & 0xFF;
-    u8 u8HighInput = (u16OverFlowCheck>>8)& 0xFF;
+    u8 u8LowInput = u16OverFlow & 0xFF;
+    u8 u8HighInput = (u16OverFlow>>8)& 0xFF;
 
     TMR0L = u8LowInput;
     TMR0H = u8HighInput;

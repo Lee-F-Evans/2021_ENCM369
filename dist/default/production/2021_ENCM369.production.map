@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2_31\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\2021_ENCM369.production.sym \
   --cmf=dist/default/production\2021_ENCM369.production.cmf -z -Q18F27Q43 \
-  -oC:\Users\Lee\AppData\Local\Temp\s5lo.2 --defsym=__MPLAB_BUILD=1 \
+  -oC:\Users\Lee\AppData\Local\Temp\sk10.2 --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/2021_ENCM369.production.map -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ASTACK=0560h-025FFh -pstack=STACK \
   -ACODE=00h-01FFFFh -ACONST=00h-01FFFFh -ASMALLCONST=02600h-026FFhx474 \
@@ -31,7 +31,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\Lee\AppData\Local\Temp\s5lo.o \
+  C:\Users\Lee\AppData\Local\Temp\sk10.o \
   dist/default/production\2021_ENCM369.production.o 
 
 Object code version is 3.11
@@ -41,7 +41,7 @@ Machine type is 18F27Q43
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\Lee\AppData\Local\Temp\s5lo.o
+C:\Users\Lee\AppData\Local\Temp\sk10.o
                 idloc                            200000   200000       20        0       5
                 config                           300000   300000        A        0       4
                 init                              1FFFC    1FFFC        4     FFFE       0
@@ -246,7 +246,7 @@ UNUSED ADDRESS RANGES
                                   Symbol Table
 
 TimeXus@u16Microseconds     cstackCOMRAM 000512
-TimeXus@u16OverFlowCheck    cstackCOMRAM 000516
+TimeXus@u16OverFlow         cstackCOMRAM 000516
 TimeXus@u8HighInput         cstackCOMRAM 000515
 TimeXus@u8LowInput          cstackCOMRAM 000514
 UserAppRun@F15924           dataCOMRAM   000519
@@ -609,11 +609,11 @@ Total ram usage:        0 bytes
 
  *************** function _TimeXus *****************
  Defined at:
-		line 149 in file "user_app.c"
+		line 156 in file "user_app.c"
  Parameters:    Size  Location     Type
   u16Microseco    2    0[COMRAM] unsigned short 
  Auto vars:     Size  Location     Type
-  u16OverFlowC    2    4[COMRAM] unsigned short 
+  u16OverFlow     2    4[COMRAM] unsigned short 
   u8HighInput     1    3[COMRAM] unsigned char 
   u8LowInput      1    2[COMRAM] unsigned char 
  Return value:  Size  Location     Type

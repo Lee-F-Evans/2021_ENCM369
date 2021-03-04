@@ -2599,159 +2599,159 @@ Version 4.0 HI-TECH Software Intermediate Code
 "106
 [; ;user_app.c: 106:     u16TimerCounter++;
 [e ++ F15922 -> -> 1 `i `us ]
-"108
-[; ;user_app.c: 108:     if(u16TimerCounter == 100)
+"116
+[; ;user_app.c: 116:     if(u16TimerCounter == 100)
 [e $ ! == -> F15922 `ui -> -> 100 `i `ui 2274  ]
-"109
-[; ;user_app.c: 109:     {
+"117
+[; ;user_app.c: 117:     {
 {
-"110
-[; ;user_app.c: 110:         if(u8Direction == 0)
+"118
+[; ;user_app.c: 118:         if(u8Direction == 0)
 [e $ ! == F15923 -> 0 `i 2275  ]
-"111
-[; ;user_app.c: 111:         {
+"119
+[; ;user_app.c: 119:         {
 {
-"112
-[; ;user_app.c: 112:             LATA = u16LataState|u8LedState[0];
+"120
+[; ;user_app.c: 120:             LATA = u16LataState|u8LedState[0];
 [e = _LATA -> | -> _u16LataState `ui -> *U + &U _u8LedState * -> -> -> 0 `i `ui `ux -> -> # *U &U _u8LedState `ui `ux `ui `uc ]
-"113
-[; ;user_app.c: 113:         } else
+"121
+[; ;user_app.c: 121:         } else
 }
 [e $U 2276  ]
 [e :U 2275 ]
-"114
-[; ;user_app.c: 114:         {
+"122
+[; ;user_app.c: 122:         {
 {
-"115
-[; ;user_app.c: 115:             LATA = u16LataState|u8LedState[1];
+"123
+[; ;user_app.c: 123:             LATA = u16LataState|u8LedState[1];
 [e = _LATA -> | -> _u16LataState `ui -> *U + &U _u8LedState * -> -> -> 1 `i `ui `ux -> -> # *U &U _u8LedState `ui `ux `ui `uc ]
-"116
-[; ;user_app.c: 116:         }
+"124
+[; ;user_app.c: 124:         }
 }
 [e :U 2276 ]
-"117
-[; ;user_app.c: 117:     } else if(u16TimerCounter == 200)
+"125
+[; ;user_app.c: 125:     } else if(u16TimerCounter == 200)
 }
 [e $U 2277  ]
 [e :U 2274 ]
 [e $ ! == -> F15922 `ui -> -> 200 `i `ui 2278  ]
-"118
-[; ;user_app.c: 118:     {
+"126
+[; ;user_app.c: 126:     {
 {
-"119
-[; ;user_app.c: 119:         if(u8Direction == 0)
+"127
+[; ;user_app.c: 127:         if(u8Direction == 0)
 [e $ ! == F15923 -> 0 `i 2279  ]
-"120
-[; ;user_app.c: 120:         {
+"128
+[; ;user_app.c: 128:         {
 {
-"121
-[; ;user_app.c: 121:             LATA = u16LataState|u8LedState[1];
+"129
+[; ;user_app.c: 129:             LATA = u16LataState|u8LedState[1];
 [e = _LATA -> | -> _u16LataState `ui -> *U + &U _u8LedState * -> -> -> 1 `i `ui `ux -> -> # *U &U _u8LedState `ui `ux `ui `uc ]
-"122
-[; ;user_app.c: 122:         }else
+"130
+[; ;user_app.c: 130:         }else
 }
 [e $U 2280  ]
 [e :U 2279 ]
-"123
-[; ;user_app.c: 123:         {
+"131
+[; ;user_app.c: 131:         {
 {
-"124
-[; ;user_app.c: 124:             LATA = u16LataState|u8LedState[0];
+"132
+[; ;user_app.c: 132:             LATA = u16LataState|u8LedState[0];
 [e = _LATA -> | -> _u16LataState `ui -> *U + &U _u8LedState * -> -> -> 0 `i `ui `ux -> -> # *U &U _u8LedState `ui `ux `ui `uc ]
-"125
-[; ;user_app.c: 125:         }
+"133
+[; ;user_app.c: 133:         }
 }
 [e :U 2280 ]
-"126
-[; ;user_app.c: 126:     }else if(u16TimerCounter == 300)
+"134
+[; ;user_app.c: 134:     }else if(u16TimerCounter == 300)
 }
 [e $U 2281  ]
 [e :U 2278 ]
 [e $ ! == -> F15922 `ui -> -> 300 `i `ui 2282  ]
-"127
-[; ;user_app.c: 127:     {
+"135
+[; ;user_app.c: 135:     {
 {
-"128
-[; ;user_app.c: 128:         if(u8Direction == 0)
+"136
+[; ;user_app.c: 136:         if(u8Direction == 0)
 [e $ ! == F15923 -> 0 `i 2283  ]
-"129
-[; ;user_app.c: 129:         {
+"137
+[; ;user_app.c: 137:         {
 {
-"130
-[; ;user_app.c: 130:             LATA = u16LataState|u8LedState[2];
+"138
+[; ;user_app.c: 138:             LATA = u16LataState|u8LedState[2];
 [e = _LATA -> | -> _u16LataState `ui -> *U + &U _u8LedState * -> -> -> 2 `i `ui `ux -> -> # *U &U _u8LedState `ui `ux `ui `uc ]
-"131
-[; ;user_app.c: 131:             u8Direction = 1;
+"139
+[; ;user_app.c: 139:             u8Direction = 1;
 [e = F15923 -> 1 `i ]
-"132
-[; ;user_app.c: 132:             u16TimerCounter = 0;
+"140
+[; ;user_app.c: 140:             u16TimerCounter = 0;
 [e = F15922 -> -> 0 `i `us ]
-"133
-[; ;user_app.c: 133:         } else
+"141
+[; ;user_app.c: 141:         } else
 }
 [e $U 2284  ]
 [e :U 2283 ]
-"134
-[; ;user_app.c: 134:         {
+"142
+[; ;user_app.c: 142:         {
 {
-"135
-[; ;user_app.c: 135:             LATA = u16LataState|u8LedState[3];
+"143
+[; ;user_app.c: 143:             LATA = u16LataState|u8LedState[3];
 [e = _LATA -> | -> _u16LataState `ui -> *U + &U _u8LedState * -> -> -> 3 `i `ui `ux -> -> # *U &U _u8LedState `ui `ux `ui `uc ]
-"136
-[; ;user_app.c: 136:             u8Direction = 0;
+"144
+[; ;user_app.c: 144:             u8Direction = 0;
 [e = F15923 -> 0 `i ]
-"137
-[; ;user_app.c: 137:             u16TimerCounter =0;
+"145
+[; ;user_app.c: 145:             u16TimerCounter =0;
 [e = F15922 -> -> 0 `i `us ]
-"138
-[; ;user_app.c: 138:         }
+"146
+[; ;user_app.c: 146:         }
 }
 [e :U 2284 ]
-"139
-[; ;user_app.c: 139:     }
+"147
+[; ;user_app.c: 147:     }
 }
 [e :U 2282 ]
 [e :U 2281 ]
 [e :U 2277 ]
-"141
-[; ;user_app.c: 141: }
+"148
+[; ;user_app.c: 148: }
 [e :UE 2273 ]
 }
-"149
-[; ;user_app.c: 149: void TimeXus(u16 u16Microseconds){
+"156
+[; ;user_app.c: 156: void TimeXus(u16 u16Microseconds){
 [v _TimeXus `(v ~T0 @X0 1 ef1`us ]
 {
 [e :U _TimeXus ]
 [v _u16Microseconds `us ~T0 @X0 1 r1 ]
 [f ]
-"150
-[; ;user_app.c: 150:     T0CON0 &= 0x7F;
-[e =& _T0CON0 -> -> 127 `i `Vuc ]
-"152
-[; ;user_app.c: 152:     u16 u16OverFlowCheck = 0xFFFF - u16Microseconds;
-[v _u16OverFlowCheck `us ~T0 @X0 1 a ]
-[e = _u16OverFlowCheck -> - -> 65535 `ui -> _u16Microseconds `ui `us ]
-"154
-[; ;user_app.c: 154:     u8 u8LowInput = u16OverFlowCheck & 0xFF;
-[v _u8LowInput `uc ~T0 @X0 1 a ]
-[e = _u8LowInput -> & -> _u16OverFlowCheck `ui -> -> 255 `i `ui `uc ]
-"155
-[; ;user_app.c: 155:     u8 u8HighInput = (u16OverFlowCheck>>8)& 0xFF;
-[v _u8HighInput `uc ~T0 @X0 1 a ]
-[e = _u8HighInput -> & >> -> _u16OverFlowCheck `ui -> 8 `i -> -> 255 `i `ui `uc ]
 "157
-[; ;user_app.c: 157:     TMR0L = u8LowInput;
-[e = _TMR0L _u8LowInput ]
-"158
-[; ;user_app.c: 158:     TMR0H = u8HighInput;
-[e = _TMR0H _u8HighInput ]
-"160
-[; ;user_app.c: 160:     PIR3 = PIR3&0x7F;
-[e = _PIR3 -> & -> _PIR3 `i -> 127 `i `uc ]
+[; ;user_app.c: 157:     T0CON0 &= 0x7F;
+[e =& _T0CON0 -> -> 127 `i `Vuc ]
+"159
+[; ;user_app.c: 159:     u16 u16OverFlow = 0xFFFF - u16Microseconds;
+[v _u16OverFlow `us ~T0 @X0 1 a ]
+[e = _u16OverFlow -> - -> 65535 `ui -> _u16Microseconds `ui `us ]
+"161
+[; ;user_app.c: 161:     u8 u8LowInput = u16OverFlow & 0xFF;
+[v _u8LowInput `uc ~T0 @X0 1 a ]
+[e = _u8LowInput -> & -> _u16OverFlow `ui -> -> 255 `i `ui `uc ]
 "162
-[; ;user_app.c: 162:     T0CON0 = T0CON0 | 0X80;
+[; ;user_app.c: 162:     u8 u8HighInput = (u16OverFlow>>8)& 0xFF;
+[v _u8HighInput `uc ~T0 @X0 1 a ]
+[e = _u8HighInput -> & >> -> _u16OverFlow `ui -> 8 `i -> -> 255 `i `ui `uc ]
+"164
+[; ;user_app.c: 164:     TMR0L = u8LowInput;
+[e = _TMR0L _u8LowInput ]
+"165
+[; ;user_app.c: 165:     TMR0H = u8HighInput;
+[e = _TMR0H _u8HighInput ]
+"167
+[; ;user_app.c: 167:     PIR3 = PIR3&0x7F;
+[e = _PIR3 -> & -> _PIR3 `i -> 127 `i `uc ]
+"169
+[; ;user_app.c: 169:     T0CON0 = T0CON0 | 0X80;
 [e = _T0CON0 -> | -> _T0CON0 `i -> 128 `i `uc ]
-"163
-[; ;user_app.c: 163: }
+"170
+[; ;user_app.c: 170: }
 [e :UE 2285 ]
 }
