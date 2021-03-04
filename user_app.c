@@ -25,7 +25,6 @@ PROTECTED FUNCTIONS
 
 **********************************************************************************************************************/
 #include "configuration.h"
-#define _XTAL_FREQ 64000000
 
 /***********************************************************************************************************************
 Global variable definitions with scope across entire project.
@@ -77,13 +76,10 @@ Promises:
 */
 void UserAppInitialize(void)
 {
-   /**************** Everything below in Init. is just a boot up sequence and NOT part of the lab ***********************/ 
-    for(int i =0; i<12;i++)
-    {
-        LATA ^= 0x3F;
-        __delay_ms(250);
-    }
-    /**************** Everything above is just a boot up sequence and NOT part of the lab ***********************/    
+   
+    T0CON0 = 0x90;       // enable timer0, 16 bit timer, no post scaler
+    T0CON1 = 0x54;       // clock source = Fosc/4, Asynch, prescaler set to 1:16
+      
 } /* end UserAppInitialize() */
 
   
@@ -101,17 +97,55 @@ Promises:
 */
 void UserAppRun(void)
 {
-    LATA = 0x80;                // This writes all pins low that should be low while keeping pin 7 constant high
-    u32 u32Counter;             // counter variable for the timer loop
-    while(LATA<0xBF)            // loop that starts at 0x80,1000 0000, and adds 1 every run through stopping at 0xBF,1011 1111.
+    static u16 u16TimerCounter = 0;             //static variable to count total ms that the device has been running for
+    static u8Direction = 0;                     // Used to keep track of the direction the LEDs are moving (converging = 0/diverging = 1 from center)
+    
+    u8 u8LedState[] = {0x0C,0x12,0x21,0x00};    //My list of LED states to create a pattern
+    u16 u16LataState = 0x80&LATA;               // created a variable with 6LSB cleared in order to preserve any other important data on LATA
+    
+    u16TimerCounter++;                          //increment counter each time through userapp/ ~1ms
+    
+    
+    /*
+     * Each LED state change occurs after 100ms as seen in the highest level If statement.
+     * first state change occurs at 100ms, last one at 300
+     * u8Direction determines the next LED state based on if the LED pattern converges or diverges from center.
+     * this is seen with the second level if/else statement.
+     * One period of the animation lasts 300ms in each direction, or 600ms total.  
+    */
+    if(u16TimerCounter == 100)                  
     {
-        LATA++;                 // increment LATA once, simulating binary counting from 128 to 159, or 1000 0000 to 1011 1111.
-        u32Counter = 500000;    // Experimentally 500000 was determined to be the value that creates 250ms delay 
-        while(u32Counter > 0)   // counter loop for delay ~250ms/2Hz blinking
+        if(u8Direction == 0)                    //if LEDs converge 
         {
-            u32Counter--;
+            LATA = u16LataState|u8LedState[0]; 
+        } else                                  //if LEDs diverge from center
+        {
+            LATA = u16LataState|u8LedState[1];  
         }
-    }  
+    } else if(u16TimerCounter == 200)
+    {
+        if(u8Direction == 0)                    //if LEDs converge to center 
+        {
+            LATA = u16LataState|u8LedState[1];
+        }else
+        {
+            LATA = u16LataState|u8LedState[0];  //if LEDs converge to center
+        }
+    }else if(u16TimerCounter == 300)
+    {
+        if(u8Direction == 0)                    //if LEDs diverge from center
+        {
+            LATA = u16LataState|u8LedState[2];
+            u8Direction = 1;                    //reset direction back to 0 for the next timer cycle to converge
+            u16TimerCounter = 0;                //reset timer back to 0
+        } else                                  //if LEDs converge to center
+        {
+            LATA = u16LataState|u8LedState[3];
+            u8Direction = 0;                    // reset direction back to 0 for the next timer cycle to diverge
+            u16TimerCounter =0;                 //reset timer back to zero
+        }
+    }
+    
 } /* end UserAppRun */
 
 
@@ -120,7 +154,21 @@ void UserAppRun(void)
 /*! @privatesection */                                                                                            
 /*--------------------------------------------------------------------------------------------------------------------*/
 
-
+void TimeXus(u16 u16Microseconds){
+    T0CON0 &= 0x7F;
+    
+    u16 u16OverFlowCheck = 0xFFFF - u16Microseconds;
+    
+    u8 u8LowInput = u16OverFlowCheck & 0xFF;
+    u8 u8HighInput = (u16OverFlowCheck>>8)& 0xFF;
+    
+    TMR0L = u8LowInput;
+    TMR0H = u8HighInput;
+    
+    PIR3 = PIR3&0x7F;
+    
+    T0CON0 = T0CON0 | 0X80;
+}
 
 
 

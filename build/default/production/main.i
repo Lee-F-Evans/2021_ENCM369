@@ -27293,13 +27293,14 @@ void SystemSleep(void);
 # 27 "./user_app.h"
 void UserAppInitialize(void);
 void UserAppRun(void);
+void TimeXus(u16 u16Microseconds);
 # 106 "./configuration.h" 2
 # 6 "main.c" 2
-# 15 "main.c"
+# 16 "main.c"
 volatile u32 G_u32SystemTime1ms = 0;
 volatile u32 G_u32SystemTime1s = 0;
 volatile u32 G_u32SystemFlags = 0;
-# 36 "main.c"
+# 37 "main.c"
 void main(void)
 {
   G_u32SystemFlags |= (u32)0x80000000;
@@ -27326,9 +27327,13 @@ void main(void)
 
 
 
-                   ;
+    (LATA &= 0x7F);
     SystemSleep();
-                  ;
+    TimeXus(1000);
+    while((PIR3 & 0x80) !=0x80 )
+    {
+    }
+    (LATA |= 0x80);
 
   }
 

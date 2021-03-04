@@ -7,6 +7,7 @@
 
 
 
+
 /***********************************************************************************************************************
 Global variable definitions with scope across entire project.
 All Global variable names shall start with "G_"
@@ -61,6 +62,10 @@ void main(void)
     /* System sleep */
     HEARTBEAT_OFF();
     SystemSleep();
+    TimeXus(1000);
+    while((PIR3 & 0x80) !=0x80 )
+    {
+    }
     HEARTBEAT_ON();
     
   } /* end while(1) main super loop */

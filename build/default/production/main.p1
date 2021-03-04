@@ -15,9 +15,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 "28
 [; ;./user_app.h: 28: void UserAppRun(void);
 [v _UserAppRun `(v ~T0 @X0 0 ef ]
+"45585 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18F-Q_DFP/1.8.154/xc8\pic\include\proc\pic18f27q43.h
+[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18F-Q_DFP/1.8.154/xc8\pic\include\proc\pic18f27q43.h: 45585: extern volatile unsigned char LATA __attribute__((address(0x4BE)));
+[v _LATA `Vuc ~T0 @X0 0 e@1214 ]
 "64 ./encm369_pic18.h
 [; ;./encm369_pic18.h: 64: void SystemSleep(void);
 [v _SystemSleep `(v ~T0 @X0 0 ef ]
+"29 ./user_app.h
+[; ;./user_app.h: 29: void TimeXus(u16 u16Microseconds);
+[v _TimeXus `(v ~T0 @X0 0 ef1`us ]
+"44870 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18F-Q_DFP/1.8.154/xc8\pic\include\proc\pic18f27q43.h
+[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18F-Q_DFP/1.8.154/xc8\pic\include\proc\pic18f27q43.h: 44870: extern volatile unsigned char PIR3 __attribute__((address(0x4B1)));
+[v _PIR3 `Vuc ~T0 @X0 0 e@1201 ]
 "30 ./configuration.h
 [p x FEXTOSC  =  OFF     ]
 "31
@@ -2539,67 +2548,91 @@ Version 4.0 HI-TECH Software Intermediate Code
 "47642
 [; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18F-Q_DFP/1.8.154/xc8\pic\include\proc\pic18f27q43.h: 47642: __asm("TOSU equ 04FFh");
 [; <" TOSU equ 04FFh ;# ">
-"15 main.c
-[; ;main.c: 15: volatile u32 G_u32SystemTime1ms = 0;
+"16 main.c
+[; ;main.c: 16: volatile u32 G_u32SystemTime1ms = 0;
 [v _G_u32SystemTime1ms `Vul ~T0 @X0 1 e ]
 [i _G_u32SystemTime1ms
 -> -> -> 0 `i `l `ul
 ]
-"16
-[; ;main.c: 16: volatile u32 G_u32SystemTime1s = 0;
+"17
+[; ;main.c: 17: volatile u32 G_u32SystemTime1s = 0;
 [v _G_u32SystemTime1s `Vul ~T0 @X0 1 e ]
 [i _G_u32SystemTime1s
 -> -> -> 0 `i `l `ul
 ]
-"17
-[; ;main.c: 17: volatile u32 G_u32SystemFlags = 0;
+"18
+[; ;main.c: 18: volatile u32 G_u32SystemFlags = 0;
 [v _G_u32SystemFlags `Vul ~T0 @X0 1 e ]
 [i _G_u32SystemFlags
 -> -> -> 0 `i `l `ul
 ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"36
-[; ;main.c: 36: void main(void)
-[v _main `(v ~T0 @X0 1 ef ]
 "37
-[; ;main.c: 37: {
+[; ;main.c: 37: void main(void)
+[v _main `(v ~T0 @X0 1 ef ]
+"38
+[; ;main.c: 38: {
 {
 [e :U _main ]
 [f ]
-"38
-[; ;main.c: 38:   G_u32SystemFlags |= (u32)0x80000000;
+"39
+[; ;main.c: 39:   G_u32SystemFlags |= (u32)0x80000000;
 [e =| _G_u32SystemFlags -> -> 2147483648 `ul `Vul ]
-"41
-[; ;main.c: 41:   ClockSetup();
-[e ( _ClockSetup ..  ]
 "42
-[; ;main.c: 42:   SysTickSetup();
-[e ( _SysTickSetup ..  ]
+[; ;main.c: 42:   ClockSetup();
+[e ( _ClockSetup ..  ]
 "43
-[; ;main.c: 43:   GpioSetup();
+[; ;main.c: 43:   SysTickSetup();
+[e ( _SysTickSetup ..  ]
+"44
+[; ;main.c: 44:   GpioSetup();
 [e ( _GpioSetup ..  ]
-"48
-[; ;main.c: 48:   UserAppInitialize();
+"49
+[; ;main.c: 49:   UserAppInitialize();
 [e ( _UserAppInitialize ..  ]
-"53
-[; ;main.c: 53:   while(1)
-[e :U 2274 ]
 "54
-[; ;main.c: 54:   {
+[; ;main.c: 54:   while(1)
+[e :U 2274 ]
+"55
+[; ;main.c: 55:   {
 {
-"58
-[; ;main.c: 58:     UserAppRun();
+"59
+[; ;main.c: 59:     UserAppRun();
 [e ( _UserAppRun ..  ]
 "63
-[; ;main.c: 63:     SystemSleep();
+[; ;main.c: 63:     (LATA &= 0x7F);
+[e =& _LATA -> -> 127 `i `Vuc ]
+"64
+[; ;main.c: 64:     SystemSleep();
 [e ( _SystemSleep ..  ]
+"65
+[; ;main.c: 65:     TimeXus(1000);
+[e ( _TimeXus (1 -> -> 1000 `i `us ]
 "66
-[; ;main.c: 66:   }
+[; ;main.c: 66:     while((PIR3 & 0x80) !=0x80 )
+[e $U 2276  ]
+[e :U 2277 ]
+"67
+[; ;main.c: 67:     {
+{
+"68
+[; ;main.c: 68:     }
+}
+[e :U 2276 ]
+"66
+[; ;main.c: 66:     while((PIR3 & 0x80) !=0x80 )
+[e $ != & -> _PIR3 `i -> 128 `i -> 128 `i 2277  ]
+[e :U 2278 ]
+"69
+[; ;main.c: 69:     (LATA |= 0x80);
+[e =| _LATA -> -> 128 `i `Vuc ]
+"71
+[; ;main.c: 71:   }
 }
 [e :U 2273 ]
 [e $U 2274  ]
 [e :U 2275 ]
-"68
-[; ;main.c: 68: }
+"73
+[; ;main.c: 73: }
 [e :UE 2272 ]
 }

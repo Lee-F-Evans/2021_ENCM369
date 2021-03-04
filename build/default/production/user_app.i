@@ -27289,9 +27289,9 @@ void SystemSleep(void);
 # 27 "./user_app.h"
 void UserAppInitialize(void);
 void UserAppRun(void);
+void TimeXus(u16 u16Microseconds);
 # 106 "./configuration.h" 2
 # 27 "user_app.c" 2
-
 
 
 
@@ -27307,29 +27307,78 @@ volatile u8 G_u8UserAppFlags;
 extern volatile u32 G_u32SystemTime1ms;
 extern volatile u32 G_u32SystemTime1s;
 extern volatile u32 G_u32SystemFlags;
-# 78 "user_app.c"
+# 77 "user_app.c"
 void UserAppInitialize(void)
 {
 
-    for(int i =0; i<12;i++)
+    T0CON0 = 0x90;
+    T0CON1 = 0x54;
+
+}
+# 98 "user_app.c"
+void UserAppRun(void)
+{
+    static u16 u16TimerCounter = 0;
+    static u8Direction = 0;
+
+    u8 u8LedState[] = {0x0C,0x12,0x21,0x00};
+    u16 u16LataState = 0x80&LATA;
+
+    u16TimerCounter++;
+
+    if(u16TimerCounter == 100)
     {
-        LATA ^= 0x3F;
-        _delay((unsigned long)((250)*(64000000/4000.0)));
+        if(u8Direction == 0)
+        {
+            LATA = u16LataState|u8LedState[0];
+        } else
+        {
+            LATA = u16LataState|u8LedState[1];
+        }
+    } else if(u16TimerCounter == 200)
+    {
+        if(u8Direction == 0)
+        {
+            LATA = u16LataState|u8LedState[1];
+        }else
+        {
+            LATA = u16LataState|u8LedState[0];
+        }
+    }else if(u16TimerCounter == 300)
+    {
+        if(u8Direction == 0)
+        {
+            LATA = u16LataState|u8LedState[2];
+            u8Direction = 1;
+            u16TimerCounter = 0;
+        } else
+        {
+            LATA = u16LataState|u8LedState[3];
+            u8Direction = 0;
+            u16TimerCounter =0;
+        }
     }
 
 }
-# 102 "user_app.c"
-void UserAppRun(void)
-{
-    LATA = 0x80;
-    u32 u32Counter;
-    while(LATA<0xBF)
-    {
-        LATA++;
-        u32Counter = 500000;
-        while(u32Counter > 0)
-        {
-            u32Counter--;
-        }
-    }
+
+
+
+
+
+
+
+void TimeXus(u16 u16Microseconds){
+    T0CON0 &= 0x7F;
+
+    u16 u16OverFlowCheck = 0xFFFF - u16Microseconds;
+
+    u8 u8LowInput = u16OverFlowCheck & 0xFF;
+    u8 u8HighInput = (u16OverFlowCheck>>8)& 0xFF;
+
+    TMR0L = u8LowInput;
+    TMR0H = u8HighInput;
+
+    PIR3 = PIR3&0x7F;
+
+    T0CON0 = T0CON0 | 0X80;
 }
