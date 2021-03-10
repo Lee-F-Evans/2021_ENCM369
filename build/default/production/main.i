@@ -27323,17 +27323,17 @@ void main(void)
 
 
 
+
+
     UserAppRun();
 
 
 
-    (LATA &= 0x7F);
     SystemSleep();
-    TimeXus(1000);
-    while((PIR3 & 0x80) !=0x80 )
-    {
-    }
-    (LATA |= 0x80);
+    TimeXus(10);
+    while((PIR3 & 0x80) !=0x80 );
+
+
 
   }
 

@@ -56,18 +56,18 @@ void main(void)
     /* Drivers */
        
     /* Applications */
+
+    #if 1    
     UserAppRun();
    
-     
     /* System sleep */
-    HEARTBEAT_OFF();
+    //HEARTBEAT_OFF();
     SystemSleep();
-    TimeXus(1000);
-    while((PIR3 & 0x80) !=0x80 )
-    {
-    }
-    HEARTBEAT_ON();
-    
+    TimeXus(10);
+    while((PIR3 & 0x80) !=0x80 );    // waits for roll over to occur within timer0 so the count finishes before leaving loop
+
+    //HEARTBEAT_ON();
+    #endif     
   } /* end while(1) main super loop */
   
 } /* end main() */

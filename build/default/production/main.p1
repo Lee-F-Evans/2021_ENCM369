@@ -15,9 +15,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "28
 [; ;./user_app.h: 28: void UserAppRun(void);
 [v _UserAppRun `(v ~T0 @X0 0 ef ]
-"45585 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18F-Q_DFP/1.8.154/xc8\pic\include\proc\pic18f27q43.h
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18F-Q_DFP/1.8.154/xc8\pic\include\proc\pic18f27q43.h: 45585: extern volatile unsigned char LATA __attribute__((address(0x4BE)));
-[v _LATA `Vuc ~T0 @X0 0 e@1214 ]
 "64 ./encm369_pic18.h
 [; ;./encm369_pic18.h: 64: void SystemSleep(void);
 [v _SystemSleep `(v ~T0 @X0 0 ef ]
@@ -2596,36 +2593,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 "55
 [; ;main.c: 55:   {
 {
-"59
-[; ;main.c: 59:     UserAppRun();
+"61
+[; ;main.c: 61:     UserAppRun();
 [e ( _UserAppRun ..  ]
-"63
-[; ;main.c: 63:     (LATA &= 0x7F);
-[e =& _LATA -> -> 127 `i `Vuc ]
-"64
-[; ;main.c: 64:     SystemSleep();
-[e ( _SystemSleep ..  ]
 "65
-[; ;main.c: 65:     TimeXus(1000);
-[e ( _TimeXus (1 -> -> 1000 `i `us ]
+[; ;main.c: 65:     SystemSleep();
+[e ( _SystemSleep ..  ]
 "66
-[; ;main.c: 66:     while((PIR3 & 0x80) !=0x80 )
+[; ;main.c: 66:     TimeXus(10);
+[e ( _TimeXus (1 -> -> 10 `i `us ]
+"67
+[; ;main.c: 67:     while((PIR3 & 0x80) !=0x80 );
 [e $U 2276  ]
 [e :U 2277 ]
-"67
-[; ;main.c: 67:     {
-{
-"68
-[; ;main.c: 68:     }
-}
 [e :U 2276 ]
-"66
-[; ;main.c: 66:     while((PIR3 & 0x80) !=0x80 )
 [e $ != & -> _PIR3 `i -> 128 `i -> 128 `i 2277  ]
 [e :U 2278 ]
-"69
-[; ;main.c: 69:     (LATA |= 0x80);
-[e =| _LATA -> -> 128 `i `Vuc ]
 "71
 [; ;main.c: 71:   }
 }
