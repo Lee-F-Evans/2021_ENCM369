@@ -3031,9 +3031,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "218
 [; ;user_app.c: 218:     T1CON = 0x31;
 [e = _T1CON -> -> 49 `i `uc ]
-"221
-[; ;user_app.c: 221:     InterruptTimerXus(1000, 0x01 );
-[e ( _InterruptTimerXus (2 , -> -> 1000 `i `us -> -> 1 `i `a ]
 "223
 [; ;user_app.c: 223: }
 [e :UE 2276 ]
@@ -3046,7 +3043,132 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 [e :U _UserAppRun ]
 [f ]
+[v F15949 `us ~T0 @X0 -> 28 `i s ]
+[i F15949
+:U ..
+"241
+[; ;user_app.c: 241:   u16 au16NoteArray[] = {(u16)(u16)60, (u16)(u16)0, (u16)(u16)60, (u16)(u16)0, (u16)(u16)40, (u16)(u16)0, (u16)(u16)40, (u16)(u16)0, (u16)(u16)36, (u16)(u16)0, (u16)(u16)36, (u16)(u16)0, (u16)(u16)40, (u16)(u16)0, (u16)(u16)45, (u16)(u16)0, (u16)(u16)45, (u16)(u16)0, (u16)(u16)47, (u16)(u16)0, (u16)(u16)47, (u16)(u16)0, (u16)(u16)53, (u16)(u16)0, (u16)(u16)53, (u16)(u16)0, (u16)(u16)60, (u16)(u16)0};
+-> -> 60 `i `us
+-> -> 0 `i `us
+-> -> 60 `i `us
+-> -> 0 `i `us
+-> -> 40 `i `us
+-> -> 0 `i `us
+-> -> 40 `i `us
+-> -> 0 `i `us
+-> -> 36 `i `us
+-> -> 0 `i `us
+-> -> 36 `i `us
+-> -> 0 `i `us
+-> -> 40 `i `us
+-> -> 0 `i `us
+-> -> 45 `i `us
+-> -> 0 `i `us
+-> -> 45 `i `us
+-> -> 0 `i `us
+-> -> 47 `i `us
+-> -> 0 `i `us
+-> -> 47 `i `us
+-> -> 0 `i `us
+-> -> 53 `i `us
+-> -> 0 `i `us
+-> -> 53 `i `us
+-> -> 0 `i `us
+-> -> 60 `i `us
+-> -> 0 `i `us
+..
+]
+[v _au16NoteArray `us ~T0 @X0 -> 28 `i a ]
+[e = _au16NoteArray F15949 ]
+[v F15951 `us ~T0 @X0 -> 28 `i s ]
+[i F15951
+:U ..
 "242
-[; ;user_app.c: 242: }
+[; ;user_app.c: 242:   u16 au16TimeArray[] = {(u16)((u16)2048 / 4), (u16)50, (u16)((u16)2048 / 4), (u16)50, (u16)((u16)2048 / 4), (u16)50, (u16)((u16)2048 / 4), (u16)50, (u16)((u16)2048 / 4), (u16)50, (u16)((u16)2048 / 4), (u16)50, (u16)((u16)2048 / 2), (u16)50, (u16)((u16)2048 / 4), (u16)50, (u16)((u16)2048 / 4), (u16)50, (u16)((u16)2048 / 4), (u16)50, (u16)((u16)2048 / 4), (u16)50, (u16)((u16)2048 / 4), (u16)50, (u16)((u16)2048 / 4), (u16)50, (u16)((u16)2048 / 2), 2500};
+-> / -> -> -> 2048 `i `us `ui -> -> 4 `i `ui `us
+-> -> 50 `i `us
+-> / -> -> -> 2048 `i `us `ui -> -> 4 `i `ui `us
+-> -> 50 `i `us
+-> / -> -> -> 2048 `i `us `ui -> -> 4 `i `ui `us
+-> -> 50 `i `us
+-> / -> -> -> 2048 `i `us `ui -> -> 4 `i `ui `us
+-> -> 50 `i `us
+-> / -> -> -> 2048 `i `us `ui -> -> 4 `i `ui `us
+-> -> 50 `i `us
+-> / -> -> -> 2048 `i `us `ui -> -> 4 `i `ui `us
+-> -> 50 `i `us
+-> / -> -> -> 2048 `i `us `ui -> -> 2 `i `ui `us
+-> -> 50 `i `us
+-> / -> -> -> 2048 `i `us `ui -> -> 4 `i `ui `us
+-> -> 50 `i `us
+-> / -> -> -> 2048 `i `us `ui -> -> 4 `i `ui `us
+-> -> 50 `i `us
+-> / -> -> -> 2048 `i `us `ui -> -> 4 `i `ui `us
+-> -> 50 `i `us
+-> / -> -> -> 2048 `i `us `ui -> -> 4 `i `ui `us
+-> -> 50 `i `us
+-> / -> -> -> 2048 `i `us `ui -> -> 4 `i `ui `us
+-> -> 50 `i `us
+-> / -> -> -> 2048 `i `us `ui -> -> 4 `i `ui `us
+-> -> 50 `i `us
+-> / -> -> -> 2048 `i `us `ui -> -> 2 `i `ui `us
+-> -> 2500 `i `us
+..
+]
+[v _au16TimeArray `us ~T0 @X0 -> 28 `i a ]
+[e = _au16TimeArray F15951 ]
+"244
+[; ;user_app.c: 244:   static u8 u8Index = 0;
+[v F15953 `uc ~T0 @X0 1 s u8Index ]
+[i F15953
+-> -> 0 `i `uc
+]
+"245
+[; ;user_app.c: 245:   static u16 u16Counter = 0x0000;
+[v F15954 `us ~T0 @X0 1 s u16Counter ]
+[i F15954
+-> -> 0 `i `us
+]
+"247
+[; ;user_app.c: 247:     if (u16Counter == au16TimeArray[u8Index])
+[e $ ! == -> F15954 `ui -> *U + &U _au16TimeArray * -> F15953 `ux -> -> # *U &U _au16TimeArray `ui `ux `ui 2278  ]
+"248
+[; ;user_app.c: 248:     {
+{
+"249
+[; ;user_app.c: 249:         InterruptTimerXus(au16NoteArray[u8Index +1],1);
+[e ( _InterruptTimerXus (2 , *U + &U _au16NoteArray * -> -> + -> F15953 `i -> 1 `i `ui `ux -> -> # *U &U _au16NoteArray `ui `ux -> -> 1 `i `a ]
+"251
+[; ;user_app.c: 251:         if(u8Index == 27){
+[e $ ! == -> F15953 `i -> 27 `i 2279  ]
+{
+"252
+[; ;user_app.c: 252:             u8Index = 0;
+[e = F15953 -> -> 0 `i `uc ]
+"253
+[; ;user_app.c: 253:         } else {
+}
+[e $U 2280  ]
+[e :U 2279 ]
+{
+"254
+[; ;user_app.c: 254:             u8Index++;
+[e ++ F15953 -> -> 1 `i `uc ]
+"255
+[; ;user_app.c: 255:         }
+}
+[e :U 2280 ]
+"256
+[; ;user_app.c: 256:         u16Counter = 0x0000;
+[e = F15954 -> -> 0 `i `us ]
+"257
+[; ;user_app.c: 257:     }
+}
+[e :U 2278 ]
+"259
+[; ;user_app.c: 259:     u16Counter++;
+[e ++ F15954 -> -> 1 `i `us ]
+"261
+[; ;user_app.c: 261: }
 [e :UE 2277 ]
 }

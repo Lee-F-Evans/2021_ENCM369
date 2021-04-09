@@ -203,7 +203,7 @@ Promises:
 */
 void UserAppInitialize(void)
 {
-    /* LED initialization */
+   /* LED initialization */
     LATA &= 0xC0;
     
     /* Timer0 control register initialization to turn timer on, asynch mode, 16-bit
@@ -218,7 +218,7 @@ void UserAppInitialize(void)
     T1CON  = 0x31;  // b'00110001'
     
     // Test call to set frequency
-    InterruptTimerXus(1000, 0x01 );
+    // InterruptTimerXus(16, 1 );
     
 } /* end UserAppInitialize() */
 
@@ -237,8 +237,27 @@ Promises:
 */
 void UserAppRun(void)
 {
+  // arrays to store notes and timing for the first line of twinkle twinkle little star
+  u16 au16NoteArray[] = {C4, NN, C4, NN, G4, NN, G4, NN, A4, NN, A4, NN, G4, NN, F4, NN, F4, NN, E4, NN, E4, NN, D4, NN, D4, NN, C4, NN};
+  u16 au16TimeArray[] = {N4, RT, N4, RT, N4, RT, N4, RT, N4, RT, N4, RT, N2, RT, N4, RT, N4, RT, N4, RT, N4, RT, N4, RT, N4, RT, N2, 2500};
 
-  
+  static u8 u8Index = 0;           // used to index the array of notes
+  static u16 u16Counter = 0x0000;  // counts ms
+
+    if (u16Counter == au16TimeArray[u8Index])  //play the next note after the delay and previous note
+    {
+        InterruptTimerXus(au16NoteArray[u8Index +1],1); //set next frequency
+        
+        if(u8Index == 27){ // check if we've reached the end of the musical sequence(array)
+            u8Index = 0;   // if so reset back to start
+        } else {
+            u8Index++;     // if not then go to the next note and timing index
+        }
+        u16Counter = 0x0000;  // Reset timer
+    }
+
+    u16Counter++;  // increment counter by one ms
+   
 } /* end UserAppRun() */
 
 
