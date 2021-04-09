@@ -237,17 +237,17 @@ Promises:
 */
 void UserAppRun(void)
 {
-  // arrays to store notes and timing for the first line of twinkle twinkle little star
-  u16 au16NoteArray[] = {C4, NN, C4, NN, G4, NN, G4, NN, A4, NN, A4, NN, G4, NN, F4, NN, F4, NN, E4, NN, E4, NN, D4, NN, D4, NN, C4, NN};
-  u16 au16TimeArray[] = {N4, RT, N4, RT, N4, RT, N4, RT, N4, RT, N4, RT, N2, RT, N4, RT, N4, RT, N4, RT, N4, RT, N4, RT, N4, RT, N2, 2500};
+     // arrays to store notes and timing for the first line of twinkle twinkle little star
+    u16 au16NoteArray[] = {C4, NN, C4, NN, G4, NN, G4, NN, A4, NN, A4, NN, G4, NN, F4, NN, F4, NN, E4, NN, E4, NN, D4, NN, D4, NN, C4, NN};
+    u16 au16TimeArray[] = {N4, RT, N4, RT, N4, RT, N4, RT, N4, RT, N4, RT, N2, RT, N4, RT, N4, RT, N4, RT, N4, RT, N4, RT, N4, RT, N2, 2500};
 
-  static u8 u8Index = 0;           // used to index the array of notes
-  static u16 u16Counter = 0x0000;  // counts ms
+    static u8 u8Index = 0;           // used to index the array of notes
+    static u16 u16Counter = 0x0000;  // counts ms
 
+    InterruptTimerXus(au16NoteArray[u8Index],1); //set next frequency
+  
     if (u16Counter == au16TimeArray[u8Index])  //play the next note after the delay and previous note
     {
-        InterruptTimerXus(au16NoteArray[u8Index +1],1); //set next frequency
-        
         if(u8Index == 27){ // check if we've reached the end of the musical sequence(array)
             u8Index = 0;   // if so reset back to start
         } else {
@@ -255,7 +255,6 @@ void UserAppRun(void)
         }
         u16Counter = 0x0000;  // Reset timer
     }
-
     u16Counter++;  // increment counter by one ms
    
 } /* end UserAppRun() */
